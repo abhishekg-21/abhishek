@@ -1,0 +1,71 @@
+SQL querys for a Java code.
+
+SQL query for author details.
+
+CREATE TABLE author (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    address TEXT,
+    phone_no VARCHAR(15)
+);
+
+
+SQL query for Book Details.
+
+CREATE TABLE book (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    category_id INT,
+    author_id INT,
+    publisher_id INT,
+    edition VARCHAR(255),
+    contents TEXT,
+    pages INT,
+    phone VARCHAR(50),
+    FOREIGN KEY (category_id) REFERENCES category(id),
+    FOREIGN KEY (author_id) REFERENCES author(id),
+    FOREIGN KEY (publisher_id) REFERENCES publisher(id)
+);
+
+
+SQL query for Category Details.
+
+CREATE TABLE category (
+    id INT AUTO_INCREMENT PRIMARY KEY,          -- Unique ID for each category
+    Category_Name VARCHAR(255) NOT NULL,         -- Name of the category (e.g., Fiction, Science)
+    Status VARCHAR(50) NOT NULL                 -- Status of the category (e.g., Active, Inactive)
+);
+
+
+SQL query for IssueBook Details.
+
+CREATE TABLE issued_book (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    member_id INT,
+    book_id INT,
+    issue_date DATE,
+    return_date DATE,
+    FOREIGN KEY (member_id) REFERENCES member(id),
+    FOREIGN KEY (book_id) REFERENCES book(id)
+);
+
+
+SQL query for Member Details.
+
+CREATE TABLE Member (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    member_name VARCHAR(255) NOT NULL,
+    address TEXT,
+    phone_no VARCHAR(15)
+);
+
+
+SQL query for Publisher Details.
+
+CREATE TABLE Publisher (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    Publisher_name VARCHAR(255) NOT NULL,
+    address TEXT,
+    phone_no VARCHAR(15)
+);
+
